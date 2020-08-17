@@ -123,7 +123,10 @@ int BLELocalCharacteristic::writeValue(const uint8_t value[], int length)
 
     GAP.setAdvertisedServiceData(serviceUuid, value, length);
   
+  // TO BE REVISIONED
+    // could advertise also if connected
     if (!ATT.connected() && GAP.advertising()) {
+      // if it is already advertising it should stop before requesting advertising again
       GAP.advertise();
     }
   }
